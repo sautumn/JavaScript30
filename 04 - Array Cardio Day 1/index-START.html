@@ -31,17 +31,42 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const filter1500 = inventors.filter(person => {
+      return person.year >= 1500 && person.year < 1600;
+    });
+    console.log(JSON.stringify(filter1500));
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const firstLastNames = inventors.map(person => {
+      return `${person.first} ${person.last}`;
+    });
+    console.log(firstLastNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sorted = inventors.sort((a,b) => {
+      return a.year - b.year;
+    });
+    console.log(JSON.stringify(sorted));
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const yearsLived = inventors.reduce((prev,curr) => {
+      let lived = curr.passed - curr.year;
+      return prev + lived;
+    }, 0);
+    console.log(yearsLived);
 
     // 5. Sort the inventors by years lived
+    const getAge = inventors.sort((a,b) => {
+      function age(person) {
+        return person.passed - person.lived;
+      };
+      return age(b) - age(a);
+    });
+
+    console.log(getAge);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -49,10 +74,23 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const lastName = people.sort();
+    console.log(lastName);
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const sum = data.reduce((namesObj, item) => {
+      if (item in namesObj) {
+        namesObj[item] += 1;
+      } else {
+        namesObj[item] = 1;
+      }
+      return namesObj;
+    }, {});
+
+    console.log(sum);
 
   </script>
 </body>
